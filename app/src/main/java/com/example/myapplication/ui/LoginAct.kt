@@ -4,12 +4,14 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
+import com.example.myapplication.bean.FindBean
 import com.example.myapplication.bean.LoginDataBean
 import com.example.myapplication.mvp.contract.LoginContract
 import com.example.myapplication.mvp.presenter.LoginPresenter
@@ -24,6 +26,12 @@ import java.util.jar.Manifest
  * @date :2019/11/11 11:47
  */
 class LoginAct : AppCompatActivity(),LoginContract.ILoginView, View.OnClickListener {
+    override fun test(bean: MutableList<FindBean>?) {
+      for (findBean in bean!!){
+          Log.e("test",findBean.name)
+      }
+    }
+
     var loginPresenter:LoginPresenter?=null
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +57,7 @@ class LoginAct : AppCompatActivity(),LoginContract.ILoginView, View.OnClickListe
                 val paramsMap=HashMap<String,String>()
                 paramsMap["uMobile"] = name
                 paramsMap["uPassword"]=MD5Util.getMD5Str(pwd)
-                loginPresenter?.login(paramsMap)
+                loginPresenter?.getLoadData()
             }
         }
     }

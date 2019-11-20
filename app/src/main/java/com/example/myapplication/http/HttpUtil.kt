@@ -21,7 +21,7 @@ class HttpUtil(context: Context) {
         okHttpClient = OkHttpClient.Builder()
                 .connectTimeout(20, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
-                .addInterceptor(RequestInterceptor())
+//                .addInterceptor(RequestInterceptor())
                 .build()
         retrofit = Retrofit.Builder()
                 .client(okHttpClient)
